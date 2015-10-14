@@ -28,6 +28,10 @@ public class LibretaService implements ILibretaService {
 	public Libreta getLibretaById(Integer id) throws Exception {
 		if (id==1){
 			return null;
+		}else{
+			if (id==2){
+				throw new RuntimeException();
+			}
 		}
 		Libreta l = new Libreta();
 		l.setId(id);

@@ -6,6 +6,7 @@ package controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,6 +29,8 @@ public class LibretaController {
 	@Autowired
 	private ILibretaService libretaService;
 
+	private Logger log = Logger.getLogger(LibretaController.class);
+	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@RequestMapping(value = "/libreta", produces = MediaType.APPLICATION_JSON_VALUE)
 	public Return getLibretaById(
@@ -42,13 +45,11 @@ public class LibretaController {
 				lista.add(l);
 				result.setData(lista);
 			}else{
-				result.setCode(StandardResponse.NO_CONTENT);
+				result.setCode(StandardResponse.SIN_CONTENIDO);
 				result.setNumResult(0);
 			}
 		}catch(Exception e){
-			//TODO pendiente de hacer una criba por tipos de errores
-			result.setCode(StandardResponse.ERROR);
-			result.setNumResult(0);
+			result = StandardResponse.getResponseInExceptionInt(e, log);
 		}
 		return result;
 	}
@@ -64,13 +65,11 @@ public class LibretaController {
 				result.setNumResult(l.size());				
 				result.setData(l);
 			}else{
-				result.setCode(StandardResponse.NO_CONTENT);
+				result.setCode(StandardResponse.SIN_CONTENIDO);
 				result.setNumResult(0);
 			}
 		}catch(Exception e){
-			//TODO pendiente de hacer una criba por tipos de errores
-			result.setCode(StandardResponse.ERROR);
-			result.setNumResult(0);
+			result = StandardResponse.getResponseInExceptionInt(e, log);
 		}
 		return result;
 	}
