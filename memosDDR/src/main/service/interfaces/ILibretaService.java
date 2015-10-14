@@ -1,11 +1,11 @@
 /**
  * 
  */
-package service.interfaces;
+package main.service.interfaces;
 
 import java.util.List;
 
-import dao.model.Libreta;
+import main.dao.model.Libreta;
 
 /**
  * @author ddiaz

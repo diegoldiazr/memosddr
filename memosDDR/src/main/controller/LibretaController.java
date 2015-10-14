@@ -1,7 +1,7 @@
 /**
  * 
  */
-package controller;
+package main.controller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import dao.model.Libreta;
-import service.interfaces.ILibretaService;
-import utils.Return;
-import utils.StandardResponse;
+import main.dao.model.Libreta;
+import main.service.interfaces.ILibretaService;
+import main.utils.Return;
+import main.utils.StandardResponse;
 
 /**
  * @author ddiaz

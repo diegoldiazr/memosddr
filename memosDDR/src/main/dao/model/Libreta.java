@@ -1,15 +1,27 @@
 /**
  * 
  */
-package dao.model;
+package main.dao.model;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * @author ddiaz
  *
  */
+@Entity
+@Table(name="LIBRETA")
 public class Libreta {
 
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	@Column(name = "texto", unique=true, nullable = false)
 	private String texto;
 	private String fechaCreacion;
 	private String fechaModificacion;

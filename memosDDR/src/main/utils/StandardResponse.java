@@ -1,7 +1,7 @@
 /**
  * 
  */
-package utils;
+package main.utils;
 
 import java.nio.file.AccessDeniedException;
 import java.util.HashMap;

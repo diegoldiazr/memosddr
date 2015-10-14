@@ -1,7 +1,7 @@
 /**
  * 
  */
-package config;
+package main.config;
 
 /**
  * @author ddiaz
