@@ -38,14 +38,13 @@ public class LibretaController {
 		Return result = new Return();
 		try{
 			Libreta l = libretaService.getLibretaById(id);			
-			if (l!=null){
-				result.setCode(StandardResponse.OK);
-				result.setNumResult(1);				
+			if (l!=null){											
 				List lista = new ArrayList<>();
 				lista.add(l);
 				result.setData(lista);
 			}else{
 				result.setCode(StandardResponse.SIN_CONTENIDO);
+				result.setMessage(StandardResponse.MESSAGE_SIN_CONTENIDO);
 				result.setNumResult(0);
 			}
 		}catch(Exception e){
@@ -60,12 +59,12 @@ public class LibretaController {
 		Return result = new Return();
 		try{
 			List l = libretaService.getLibretas();
-			if (l!=null){
-				result.setCode(StandardResponse.OK);
+			if (l!=null){				
 				result.setNumResult(l.size());				
 				result.setData(l);
 			}else{
 				result.setCode(StandardResponse.SIN_CONTENIDO);
+				result.setMessage(StandardResponse.MESSAGE_SIN_CONTENIDO);
 				result.setNumResult(0);
 			}
 		}catch(Exception e){

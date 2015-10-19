@@ -16,6 +16,16 @@ public class Return {
 	private int numResult;
 	private List<Object> data;
 	
+	
+	/**
+	 * se crea y se inicializa.
+	 */
+	public Return() {
+		super();
+		this.code = StandardResponse.OK;
+		this.message = StandardResponse.MESSAGE_OK;
+		this.numResult = 1;
+	}
 	public int getCode() {
 		return code;
 	}

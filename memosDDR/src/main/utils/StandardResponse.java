@@ -29,6 +29,8 @@ public class StandardResponse {
 
 	private static final HashMap<Class<? extends Exception>, Integer> LIST_EXCEPTIONS 
 		= new LinkedHashMap<Class<? extends Exception>, Integer>();
+	public static final String MESSAGE_OK = "OK";
+	public static final String MESSAGE_SIN_CONTENIDO = "No Content";
 	
 	static {
 		
