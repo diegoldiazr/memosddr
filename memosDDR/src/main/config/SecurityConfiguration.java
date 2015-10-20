@@ -21,11 +21,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
   
-      http.authorizeRequests()
+      http.authorizeRequests()      	
         .antMatchers("/", "/home").permitAll() 
         .antMatchers("/admin/**").access("hasRole('ADMIN')")
         .antMatchers("/data/**").access("hasRole('ADMIN') and hasRole('DBA')")
         .and().formLogin();
+        //.and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+      
         //.and().exceptionHandling().accessDeniedPage("/Access_Denied");
   
     }

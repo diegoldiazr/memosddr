@@ -9,8 +9,8 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import main.dao.model.Libreta;
@@ -32,9 +32,9 @@ public class LibretaController {
 	private Logger log = Logger.getLogger(LibretaController.class);
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	@RequestMapping(value = "/libreta", produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/libretas/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public Return getLibretaById(
-			@RequestParam(value="id", required = false, defaultValue = "0") Integer id){
+			@PathVariable("id") Integer id){
 		Return result = new Return();
 		try{
 			Libreta l = libretaService.getLibretaById(id);			

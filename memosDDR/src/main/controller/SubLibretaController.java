@@ -9,7 +9,9 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -30,36 +32,23 @@ public class SubLibretaController {
 	private ISubLibretaService subLibretaService;
 
 	private Logger log = Logger.getLogger(SubLibretaController.class);
-	
+		
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	@RequestMapping(value = "/subLibreta", produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(method = RequestMethod.GET, value = "/subLibretas/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public Return getLibretaById(
-			@RequestParam(value="id", required = false, defaultValue = "0") Integer id,
-			@RequestParam(value="idLibreta", required = false, defaultValue = "0") Integer idLibreta){
+			@PathVariable("id") Integer id){
 		Return result = new Return();
-		try{
-			if (id != 0){
-				SubLibreta l = subLibretaService.getSubLibretaById(id);					
-				if (l!=null){											
-					List lista = new ArrayList<>();
-					lista.add(l);
-					result.setData(lista);
-				}else{
-					result.setCode(StandardResponse.SIN_CONTENIDO);
-					result.setMessage(StandardResponse.MESSAGE_SIN_CONTENIDO);
-					result.setNumResult(0);
-				}
+		try{			
+			SubLibreta l = subLibretaService.getSubLibretaById(id);					
+			if (l!=null){											
+				List lista = new ArrayList<>();
+				lista.add(l);
+				result.setData(lista);
 			}else{
-				List l = subLibretaService.getByQuery(idLibreta);				
-				if (l!=null){				
-					result.setNumResult(l.size());				
-					result.setData(l);
-				}else{
-					result.setCode(StandardResponse.SIN_CONTENIDO);
-					result.setMessage(StandardResponse.MESSAGE_SIN_CONTENIDO);
-					result.setNumResult(0);
-				}
-			}
+				result.setCode(StandardResponse.SIN_CONTENIDO);
+				result.setMessage(StandardResponse.MESSAGE_SIN_CONTENIDO);
+				result.setNumResult(0);
+			}		
 		}catch(Exception e){
 			result = StandardResponse.getResponseInExceptionInt(e, log);
 		}
@@ -68,10 +57,16 @@ public class SubLibretaController {
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@RequestMapping(value = "/subLibretas", produces = MediaType.APPLICATION_JSON_VALUE)
-	public Return getLibretas(){
+	public Return getLibretas(
+			@RequestParam(value="idLibreta", required = false) Integer idLibreta){
 		Return result = new Return();
 		try{
-			List l = subLibretaService.getSubLibretas();
+			List l = null;
+			if (idLibreta == null){
+				l = subLibretaService.getSubLibretas();
+			}else{
+				l = subLibretaService.getByQuery(idLibreta);
+			}
 			if (l!=null){				
 				result.setNumResult(l.size());				
 				result.setData(l);
