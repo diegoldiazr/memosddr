@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import main.dao.model.Libreta;
@@ -32,7 +33,7 @@ public class LibretaController {
 	private Logger log = Logger.getLogger(LibretaController.class);
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	@RequestMapping(value = "/libretas/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(method = RequestMethod.GET, value = "/libretas/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public Return getLibretaById(
 			@PathVariable("id") Integer id){
 		Return result = new Return();
@@ -54,7 +55,7 @@ public class LibretaController {
 	}
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	@RequestMapping(value = "/libretas", produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(method = RequestMethod.GET, value = "/libretas", produces = MediaType.APPLICATION_JSON_VALUE)
 	public Return getLibretas(){
 		Return result = new Return();
 		try{

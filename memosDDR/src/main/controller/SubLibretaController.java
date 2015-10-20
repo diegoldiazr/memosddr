@@ -56,7 +56,7 @@ public class SubLibretaController {
 	}
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	@RequestMapping(value = "/subLibretas", produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(method = RequestMethod.GET, value = "/subLibretas", produces = MediaType.APPLICATION_JSON_VALUE)
 	public Return getLibretas(
 			@RequestParam(value="idLibreta", required = false) Integer idLibreta){
 		Return result = new Return();
