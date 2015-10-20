@@ -15,7 +15,7 @@ import javax.persistence.Table;
  *
  */
 @Entity
-@Table(name="SUBLIBRETA")
+@Table(name="sublibreta")
 public class SubLibreta {
 
 	@Id
